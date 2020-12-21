@@ -19,6 +19,12 @@ export const initialState = {
   ],
   user: null
 };
+//something is broken is here -----------------------
+export const getBasketTotal = (basket:any) => 
+  basket?.reduce(({amount, item}:any) => 
+   item + amount, 0)
+
+
 function reducer(state, action) {
   console.log(action);
   switch (action.type) {
@@ -28,7 +34,7 @@ function reducer(state, action) {
     case "REMOVE_FROM_BASKET":
       let newBasket = [...state.basket];
       const index = state.basket.findIndex(
-        (basketItem) => basketItem.id === action.id
+        (basketItem:any) => basketItem.id === action.id
       );
       if (index >= 0) {
         newBasket.splice(index, 1);
